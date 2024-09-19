@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:homey/pages/home.dart';
+import 'package:homey/pages/home_page.dart';
 import 'package:homey/pages/login.dart';
-import 'package:homey/pages/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -17,9 +16,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
      initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: () => SplashScreen()),
-        GetPage(name: '/HOME', page: () => Home()),
-        GetPage(name: '/Login', page: () => Login())
+
+        GetPage(name: '/', page: () => Login()),
+        GetPage(name: '/HomePage', page: () => HomePage())
       ],
     );
   }
