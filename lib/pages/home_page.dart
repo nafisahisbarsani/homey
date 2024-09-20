@@ -22,13 +22,16 @@ class HomePage extends StatelessWidget {
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: bottomNavController.selectedIndex.value,
           onTap: bottomNavController.changeIndexMenu,
+          selectedItemColor: Colors.black54,
+          unselectedItemColor: Colors.grey,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home),backgroundColor: Colors.blueAccent, label: "Home",),
-            BottomNavigationBarItem(icon: Icon(Icons.heart_broken), label: "Wishlist"),
-            BottomNavigationBarItem(icon: Icon(Icons.add_shopping_cart), label: "Cart"),
-            BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profile"),
+            BottomNavigationBarItem(icon: Container(width: 24,height: 24, child: Image.asset("assets/home.png")), label: "Home"),
+            BottomNavigationBarItem(icon: Container(width: 24,height: 24, child: Image.asset("assets/wishlist.png")), label: "Wishlist"),
+            BottomNavigationBarItem(icon: Container(width: 24,height: 24, child: Image.asset("assets/cart.png")), label: "Cart"),
+            BottomNavigationBarItem(icon: Container(width: 24,height: 24, child: Image.asset("assets/account.png")), label: "Profile"),
           ],),
       );
+
     }
     );
   }

@@ -16,8 +16,8 @@ class MyTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:  const EdgeInsets.all(8),
-      padding:  const EdgeInsets.all(8),
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(vertical: 8),
       decoration: BoxDecoration(
         color: textFieldColor,
         borderRadius: BorderRadius.circular((8)),
@@ -31,22 +31,22 @@ class MyTextField extends StatelessWidget {
           ),
           border: InputBorder.none,
           contentPadding: const EdgeInsets.symmetric(
-            horizontal: 9,
-            vertical: 5,
+            horizontal: 16,
+            vertical: 20,
           ),
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: textColor,
-              width: 2.0,
+              width: 3.0,
             ),
-            borderRadius: BorderRadius.circular(7),
+            borderRadius: BorderRadius.circular(12),
           ),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide(
               color: textFieldColor,
-              width: 1.5,
+              width: 2.0,
             ),
-            borderRadius: BorderRadius.circular(7),
+            borderRadius: BorderRadius.circular(12),
           ),
         ),
         style: GoogleFonts.poppins(

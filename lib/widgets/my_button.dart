@@ -17,22 +17,26 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        onPressed: onPressed,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: textColor,
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8)
-          )
-        ),
-        child: Text(
-          text,
-          style: GoogleFonts.poppins(
-            color: firstColor,
-            fontSize: fontSize
+    return Container(
+      width: double.infinity,
+      margin: const EdgeInsets.symmetric(vertical: 8),
+      child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: textColor,
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8)
+            )
           ),
-        )
+          child: Text(
+            text,
+            style: GoogleFonts.poppins(
+              color: firstColor,
+              fontSize: fontSize
+            ),
+          )
+      ),
     );
   }
 }
