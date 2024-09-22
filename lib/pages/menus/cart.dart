@@ -61,12 +61,13 @@ class Cart extends StatelessWidget {
                           onPressed: () {},
                         ),
                       ],
-                    )
+                    ),
                   ],
-                )
+                ),
               ],
             ),
           ),
+
         ),
       ),
     );
