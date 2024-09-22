@@ -76,6 +76,13 @@ flutter:
       - assets/lemari.png
       - assets/hanger.png
       - assets/special.png
+      - assets/google.png
+      - assets/lougechair.png
+      - assets/lemaritinggi.png
+      - assets/matras.png
+      - assets/sofa-curved.png
+      - assets/woodlamp.png
+      - assets/beanbag.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

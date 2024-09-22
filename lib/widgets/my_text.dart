@@ -6,11 +6,13 @@ class MyText extends StatelessWidget {
   final String text;
   final Color color;
   final double fontsize;
+  final FontWeight fontWeight;
 
   const MyText({super.key,
     required this.text,
     required this.color,
-    required this.fontsize});
+    required this.fontsize,
+    required this.fontWeight});
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +21,7 @@ class MyText extends StatelessWidget {
       style: GoogleFonts.poppins(
         color: textColor,
         fontSize: fontsize,
+        fontWeight: fontWeight,
       )
     );
   }

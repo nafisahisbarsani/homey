@@ -21,7 +21,7 @@ class Profile extends StatelessWidget {
           height: 30,
         ),
               SizedBox(width: 20,),
-              MyText(text: "My Profile", color: textColor, fontsize: 25)
+              MyText(text: "My Profile", color: textColor, fontsize: 25, fontWeight: FontWeight.normal,)
         ]
         ),
       ),

@@ -23,7 +23,7 @@ class Cart extends StatelessWidget {
               height: 27,
             ),
             SizedBox(width: 15,),
-            MyText(text: "My Cart", color: textColor, fontsize: 25)
+            MyText(text: "My Cart", color: textColor, fontsize: 25, fontWeight: FontWeight.normal,)
           ],
         ),
         elevation: 0,
@@ -43,7 +43,7 @@ class Cart extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 16,),
-                Expanded(child: MyCartItem(text: 'Wooden chair', color: Colors.brown, price: 'Rp.500.000',
+                Expanded(child: MyCartItem(text: 'Wooden chair', color: Colors.brown, price: 'Rp.500.000', showDiscount: false, showColor: true, discount: '',
                 )),
                 Column(
                   children: [

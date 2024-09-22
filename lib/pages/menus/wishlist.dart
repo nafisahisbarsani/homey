@@ -22,7 +22,7 @@ class Wishlist extends StatelessWidget {
           height: 36,
         ),
               SizedBox(width: 15,),
-              MyText(text: "My Wishlist", color: textColor, fontsize: 25)
+              MyText(text: "My Wishlist", color: textColor, fontsize: 25, fontWeight: FontWeight.normal,)
             ],
         ),
       ),
