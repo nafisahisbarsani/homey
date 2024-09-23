@@ -85,6 +85,9 @@ flutter:
       - assets/beanbag.png
       - assets/rak-sepatu.png
       - assets/meja-rias.png
+      - assets/profile.png
+      - assets/sabun.png
+      - assets/logo2.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

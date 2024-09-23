@@ -31,43 +31,85 @@ class Cart extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: MyCard(
-            child: Row(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset("assets/kursi-kayu.png",
-                    width: 80,
-                    height: 80,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-                SizedBox(width: 16,),
-                Expanded(child: MyCartItem(text: 'Wooden chair', color: Colors.brown, price: 'Rp.500.000', showDiscount: false, showColor: true, discount: '',
-                )),
-                Column(
+          child: Column( // Menggunakan Column untuk menampung dua MyCard
+            children: [
+              // Item 1
+              MyCard(
+                child: Row(
                   children: [
-                    Icon(Icons.check_box, color: textColor,),
-                    SizedBox(height: 20,),
-                    Row(
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset("assets/kursi-kayu.png",
+                        width: 80,
+                        height: 80,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(width: 16,),
+                    Expanded(child: MyCartItem(text: 'Wooden chair', color: Colors.brown, price: 'Rp.500.000', showDiscount: false, showColor: true, discount: '',
+                    )),
+                    Column(
                       children: [
-                        IconButton(
-                          icon: Icon(Icons.remove_circle_outline),
-                          onPressed: () {},
+                        Row(
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.remove_circle_outline),
+                              onPressed: () {},
+                            ),
+                            Text("1"),
+                            IconButton(
+                              icon: Icon(Icons.add_circle_outline),
+                              onPressed: () {},
+                            ),
+                          ],
                         ),
-                        Text("1"),
-                        IconButton(
-                          icon: Icon(Icons.add_circle_outline),
-                          onPressed: () {},
-                        ),
+                        Icon(Icons.check_box, color: textColor,),
                       ],
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
+              ),
 
+              SizedBox(height: 16), // Jarak antara item
+
+              // Item 2
+              MyCard(
+                child: Row(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: Image.asset("assets/sabun.png", // Gambar item kedua
+                        width: 80,
+                        height: 80,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    SizedBox(width: 16,),
+                    Expanded(child: MyCartItem(text: 'DishEase Modern Living', color: Colors.blueGrey, price: 'Rp.100.000', showDiscount: false, showColor: true, discount: '',
+                    )),
+                    Column(
+                      children: [
+                        Row(
+                          children: [
+                            IconButton(
+                              icon: Icon(Icons.remove_circle_outline),
+                              onPressed: () {},
+                            ),
+                            Text("1"),
+                            IconButton(
+                              icon: Icon(Icons.add_circle_outline),
+                              onPressed: () {},
+                            ),
+                          ],
+                        ),
+                        Icon(Icons.check_box_outline_blank, color: textColor,),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

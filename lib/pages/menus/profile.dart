@@ -43,7 +43,7 @@ class Profile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CircleAvatar(radius: 25, backgroundImage: AssetImage("assets/account.png"),),
+                Image.asset("assets/profile.png",),
                 SizedBox(height: 12,),
                 MyText(text: "Nafisah Isbarsani", color: textColor, fontsize: 16, fontWeight: FontWeight.bold),
                 MyText(text: "nafisahisbarsani12@gmail.com", color: textColor, fontsize: 16, fontWeight: FontWeight.normal),
