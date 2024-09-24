@@ -4,6 +4,8 @@ import 'package:homey/pages/home_page.dart';
 import 'package:homey/pages/login.dart';
 import 'package:homey/pages/splashscreen.dart';
 
+import 'binding/app_binding.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -19,7 +21,11 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: '/splash', page: () => Splashscreen()),
         GetPage(name: '/', page: () => Login()),
-        GetPage(name: '/HomePage', page: () => HomePage())
+        GetPage(
+            name: '/HomePage',
+            page: () => HomePage(),
+            binding: AppBinding(),
+        )
       ],
     );
   }
