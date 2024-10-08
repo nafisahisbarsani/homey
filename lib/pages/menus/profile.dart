@@ -32,38 +32,40 @@ class Profile extends StatelessWidget {
           ],
         ),
       ),
-      body:  Padding(
-        padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-            Expanded(child:
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Image.asset("assets/profile.png",),
-                SizedBox(height: 12,),
-                MyText(text: "Nafisah Isbarsani", color: textColor, fontsize: 16, fontWeight: FontWeight.bold),
-                MyText(text: "nafisahisbarsani12@gmail.com", color: textColor, fontsize: 16, fontWeight: FontWeight.normal),
-                SizedBox(height: 40),
+        body: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+              Expanded(child:
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Image.asset("assets/profile.png",),
+                  SizedBox(height: 12,),
+                  MyText(text: "Nafisah Isbarsani", color: textColor, fontsize: 16, fontWeight: FontWeight.bold),
+                  MyText(text: "nafisahisbarsani12@gmail.com", color: textColor, fontsize: 16, fontWeight: FontWeight.normal),
+                  SizedBox(height: 40),
 
-                _buildMenuItem(Icons.location_on, "My Address"),
-                SizedBox(height: 20),
-                _buildMenuItem(Icons.notifications, "Notification"),
-                SizedBox(height: 20),
-                _buildMenuItem(Icons.devices, "Devices"),
-                SizedBox(height: 20),
-                _buildMenuItem(Icons.lock_outline, "Password"),
-                SizedBox(height: 20),
-                _buildMenuItem(Icons.language, "Language"),
-            ]
-            )
-            )
-              ],
-            ),
-          ],
+                  _buildMenuItem(Icons.location_on, "My Address"),
+                  SizedBox(height: 20),
+                  _buildMenuItem(Icons.notifications, "Notification"),
+                  SizedBox(height: 20),
+                  _buildMenuItem(Icons.devices, "Devices"),
+                  SizedBox(height: 20),
+                  _buildMenuItem(Icons.lock_outline, "Password"),
+                  SizedBox(height: 20),
+                  _buildMenuItem(Icons.language, "Language"),
+              ]
+              )
+              )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

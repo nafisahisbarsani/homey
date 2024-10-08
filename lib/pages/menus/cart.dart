@@ -46,7 +46,7 @@ class Cart extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 16,),
-                    Expanded(child: MyCartItem(text: 'Wooden chair', color: chairColor, price: 'Rp.500.000', showDiscount: false, showColor: true, discount: '',
+                    Expanded(child: MyCartItem(text: 'Wooden chair', color: chairColor, price: 'Rp.500.000', showLoveIcon: false, fontWeight: FontWeight.bold,
                     )),
                     Column(
                       children: [
@@ -85,7 +85,7 @@ class Cart extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 16,),
-                    Expanded(child: MyCartItem(text: 'DishEase Modern Living', color: handwashcolor, price: 'Rp.100.000', showDiscount: false, showColor: true, discount: '',
+                    Expanded(child: MyCartItem(text: 'DishEase Modern Living', color: handwashcolor, price: 'Rp.100.000',showLoveIcon: false, fontWeight: FontWeight.bold,
                     )),
                     Column(
                       children: [

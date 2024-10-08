@@ -1,23 +1,23 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:homey/widgets/my_color.dart';
 
 class MyCartItem extends StatelessWidget {
   final String text;
-  final Color color;
   final String price;
-  final bool showDiscount;
-  final bool showColor;
-  final String discount;
+  final Color color;
+  final FontWeight fontWeight;
+  final bool showLoveIcon; // Add this to conditionally show the icon
+  final VoidCallback? onPressed; // Add this to allow a custom action
 
-  const MyCartItem({super.key,
+  const MyCartItem({
+    Key? key,
     required this.text,
-    required this.color,
     required this.price,
-    required this.showDiscount,
-    required this.showColor,
-    required this.discount});
+    required this.color,
+    this.showLoveIcon = false,
+    this.onPressed,
+    required this.fontWeight,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,43 +26,24 @@ class MyCartItem extends StatelessWidget {
       children: [
         Text(
           text,
-          style: GoogleFonts.poppins(
-            fontSize: 12,
-            fontWeight: FontWeight.bold,
-            color: textColor
-          ),
+          style: GoogleFonts.poppins(color: color, fontWeight: fontWeight),
+        ),
+        Text(
+          price,
+          style: GoogleFonts.poppins(color: color, fontWeight: fontWeight),
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            if(showColor) ...[
-              Icon(Icons.circle, color: color),
-            ]
-          ],
-        ),
-        if (showDiscount) ...[
-          SizedBox(width: 10),
-          Row(
-            children: [
-              Icon(Icons.local_offer, color:textColor, size: 16),
-              SizedBox(width: 4,),
-              Text(
-                discount,
-                style: GoogleFonts.poppins(
-                  fontSize: 12,
-                  color: textColor,
-                ),
+            if (showLoveIcon) ...[
+              SizedBox(width: 5),
+              IconButton(
+                icon: Icon(Icons.favorite_border, color: color, size: 16),
+                onPressed: onPressed, // Use the onPressed callback here
               ),
             ],
-          ),
-        ],
-        SizedBox(height: 5,),
-        Text(price,
-        style: GoogleFonts.poppins(
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
-          color: textColor
+          ],
         ),
-        )
       ],
     );
   }

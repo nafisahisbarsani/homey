@@ -37,6 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   get: ^4.6.6
   get_storage: ^2.1.1
+  sqflite: ^2.3.3+1
 
 dev_dependencies:
   flutter_test:
@@ -77,17 +78,18 @@ flutter:
       - assets/hanger.png
       - assets/special.png
       - assets/google.png
-      - assets/lougechair.png
-      - assets/lemaritinggi.png
-      - assets/matras.png
-      - assets/sofa-curved.png
-      - assets/woodlamp.png
-      - assets/beanbag.png
-      - assets/rak-sepatu.png
+      - assets/lounge-chair.png
+      - assets/rack.png
+      - assets/pink-bed.png
+      - assets/curved-chair.png
+      - assets/woode-lamp.png
+      - assets/bean-bag.png
+      - assets/shoe.png
       - assets/meja-rias.png
       - assets/profile.png
       - assets/sabun.png
       - assets/logo2.png
+      - assets/black-chair.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

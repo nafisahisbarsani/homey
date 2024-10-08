@@ -1,15 +1,20 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../../widgets/my_cart_item.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../widgets/my_color.dart';
 import '../../widgets/my_text.dart';
+import 'package:homey/wishlist_controller.dart';
 
 class Wishlist extends StatelessWidget {
   const Wishlist({super.key});
 
   @override
   Widget build(BuildContext context) {
+
+    final controller = Get.find<WishlistController>();
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -27,45 +32,35 @@ class Wishlist extends StatelessWidget {
             ],
         ),
       ),
-
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              GridView.count(
-                crossAxisCount: 2,
-                childAspectRatio: 0.7,
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.asset("assets/rak-sepatu.png"),
-                      SizedBox(height: 10),
-                      MyCartItem(text: "Minimalist Bench Shoe Organizer", color: textColor, price: "Rp. 990.000", showDiscount: false, showColor: false, discount: ""),
-                      SizedBox(height: 6,),
-                      Image.asset("assets/cart.png", width: 18, height: 18,)
-                    ]
-                  ),
-                  Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Image.asset("assets/meja-rias.png"),
-                        SizedBox(height: 10),
-                        MyCartItem(text: "Pink Slate Top Dressing & Make-up Table", color: textColor, price: "Rp. 1.000.000", showDiscount: false, showColor: false, discount: ""),
-                        SizedBox(height: 6,),
-                        Image.asset("assets/cart.png", width: 18, height: 18,)
-                      ]
-                  ),
-
-                ],
-              )
-            ],
-          ),
-        ),
-      ),
+      body: Obx(() {
+        if (controller.wishlists.isEmpty) {
+          return Center(child: Text('Your wishlist is empty.'));
+        }
+        return ListView.builder(
+          itemCount: controller.wishlists.length,
+          itemBuilder: (context, index) {
+            final item = controller.wishlists[index];
+            return ListTile(
+              title: Text(
+                item.brand,
+                style: GoogleFonts.poppins(fontWeight: FontWeight.bold, color: textColor),
+              ),
+              subtitle: Text(
+                item.price,
+                style: GoogleFonts.poppins(fontWeight: FontWeight.bold, color: textColor),
+              ),
+              leading: Image.asset(item.image),
+            trailing: IconButton(
+            icon: Icon(
+            Icons.favorite, // filled icon
+            color: Colors.pink,
+            ), onPressed: () { controller.deleteWishlist(item.id!);
+            },
+            ),
+            );
+          },
+        );
+      }),
     );
   }
 }
