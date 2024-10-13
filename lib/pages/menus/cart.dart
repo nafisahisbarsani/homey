@@ -1,15 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:homey/widgets/my_card.dart';
-import 'package:homey/widgets/my_cart_item.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:homey/widgets/my_color.dart';
 import 'package:homey/widgets/my_text.dart';
 
+import '../../cart_controller.dart';
+
 class Cart extends StatelessWidget {
-  const Cart({super.key});
+  final CartController cartController = Get.put(CartController());
+
 
   @override
   Widget build(BuildContext context) {
+    cartController.loadCart(); // Load tasks when the screen opens
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
@@ -28,90 +33,51 @@ class Cart extends StatelessWidget {
         ),
         elevation: 0,
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column( // Menggunakan Column untuk menampung dua MyCard
-            children: [
-              // Item 1
-              MyCard(
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset("assets/kursi-kayu.png",
-                        width: 80,
-                        height: 80,
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                    SizedBox(width: 16,),
-                    Expanded(child: MyCartItem(text: 'Wooden chair', color: chairColor, price: 'Rp.500.000', showLoveIcon: false, fontWeight: FontWeight.bold,
-                    )),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            IconButton(
-                              icon: Icon(Icons.remove_circle_outline),
-                              onPressed: () {},
-                            ),
-                            Text("1"),
-                            IconButton(
-                              icon: Icon(Icons.add_circle_outline),
-                              onPressed: () {},
-                            ),
-                          ],
-                        ),
-                        Icon(Icons.check_box, color: textColor,),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
 
-              SizedBox(height: 16), // Jarak antara item
-
-              // Item 2
-              MyCard(
-                child: Row(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.asset("assets/sabun.png", // Gambar item kedua
-                        width: 80,
-                        height: 80,
-                        fit: BoxFit.cover,
-                      ),
+      body: Obx(() {
+        if (cartController.carts.isEmpty) {
+          return Center(child: Text('Your cart is empty.'));
+        }
+        return ListView.builder(
+          itemCount: cartController.carts.length,
+          itemBuilder: (context, index) {
+            final item = cartController.carts[index];
+            return ListTile(
+              title: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Brand Name
+                  Text(
+                    item.brand,
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.normal,
+                      color: textColor,
                     ),
-                    SizedBox(width: 16,),
-                    Expanded(child: MyCartItem(text: 'DishEase Modern Living', color: handwashcolor, price: 'Rp.100.000',showLoveIcon: false, fontWeight: FontWeight.bold,
-                    )),
-                    Column(
-                      children: [
-                        Row(
-                          children: [
-                            IconButton(
-                              icon: Icon(Icons.remove_circle_outline),
-                              onPressed: () {},
-                            ),
-                            Text("1"),
-                            IconButton(
-                              icon: Icon(Icons.add_circle_outline),
-                              onPressed: () {},
-                            ),
-                          ],
-                        ),
-                        Icon(Icons.check_box_outline_blank, color: textColor,),
-                      ],
+                  ),
+                  // Price
+                  Text(
+                    item.price,
+                    style: GoogleFonts.poppins(
+                      fontWeight: FontWeight.normal,
+                      color: textColor,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
-      ),
+              leading: Image.asset(item.image),
+              trailing: IconButton(
+                icon: Icon(
+                  Icons.restore_from_trash_sharp,
+                  color: Colors.redAccent.shade200,
+                ),
+                onPressed: () {
+                  cartController.deleteCart(item.id!);
+                },
+              ),
+            );
+          },
+        );
+      }),
     );
   }
 }

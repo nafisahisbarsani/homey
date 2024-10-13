@@ -21,13 +21,14 @@ class MyTextButton extends StatelessWidget {
     return TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(
-          padding: EdgeInsets.zero, // Remove default padding for more control
+          padding: EdgeInsets.zero,
         ),
         child: Text(
           text,
           style: GoogleFonts.poppins(
             color: textColor,
-            fontSize: fontSize
+            fontSize: fontSize,
+            fontWeight: fontWeight
           ),
         ));
   }

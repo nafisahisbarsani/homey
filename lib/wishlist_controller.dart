@@ -16,7 +16,7 @@ class WishlistController extends GetxController{
   }
   Future<Database> initDB() async{
     var databasePath = await getDatabasesPath();
-    String path = join(databasePath, 'task_database.db');
+    String path = join(databasePath, 'wishlist_database.db');
 
     return await openDatabase(
       path,
@@ -66,13 +66,6 @@ class WishlistController extends GetxController{
     var dbClient = await db;
     await dbClient!.delete('wishlists', where: 'id = ?', whereArgs: [id]);
     loadWishlist();
-  }
-
-
-  @override
-  void onInit() {
-    super.onInit();
-    loadWishlist(); // Memuat wishlist saat controller diinisialisasi
   }
 }
 
