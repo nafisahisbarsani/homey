@@ -76,17 +76,28 @@ class Home extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset("assets/sofa.png", width: 53, height: 53),
+                  Expanded(
+                    child: Image.asset("assets/sofa.png", width: 53, height: 53),
+                  ),
                   SizedBox(width: 20),
-                  Image.asset("assets/lemari.png", width: 53, height: 53),
+                  Expanded(
+                    child: Image.asset("assets/lemari.png", width: 53, height: 53),
+                  ),
                   SizedBox(width: 20),
-                  Image.asset("assets/lampu.png", width: 53, height: 53),
+                  Expanded(
+                    child: Image.asset("assets/lampu.png", width: 53, height: 53),
+                  ),
                   SizedBox(width: 20),
-                  Image.asset("assets/kursi.png", width: 53, height: 53),
+                  Expanded(
+                    child: Image.asset("assets/kursi.png", width: 53, height: 53),
+                  ),
                   SizedBox(width: 20),
-                  Image.asset("assets/hanger.png", width: 53, height: 53),
+                  Expanded(
+                    child: Image.asset("assets/hanger.png", width: 53, height: 53),
+                  ),
                 ],
               ),
+
               SizedBox(height: 20),
               MyText(
                 text: "Most Popular",
