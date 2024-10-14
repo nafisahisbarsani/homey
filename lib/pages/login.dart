@@ -7,8 +7,18 @@ import 'package:homey/widgets/my_text.dart';
 import 'package:homey/widgets/my_text_button.dart';
 import 'package:homey/widgets/my_text_field.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  _LoginState createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  // You can add any state variables here if needed
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -21,34 +31,69 @@ class Login extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Image.asset("assets/logo3.png", width: 100, height: 100,),
+                  Image.asset("assets/logo3.png", width: 100, height: 100),
                   SizedBox(height: 40),
-                  MyTextField(hintText: "username", isObsecure: false, fontsize: 16),
-                  MyTextField(hintText: "password", isObsecure: true, fontsize: 16),
+                  MyTextField(
+                    hintText: "username",
+                    isObsecure: false,
+                    fontsize: 16,
+                    controller: usernameController,
+                  ),
+                  MyTextField(
+                    hintText: "password",
+                    isObsecure: true,
+                    fontsize: 16,
+                    controller: passwordController,
+                  ),
                   SizedBox(height: 20),
-                  MyButton(text: "Login", color: textColor, onPressed: (){Get.toNamed('HomePage');}, fontSize: 17),
+                  MyButton(
+                    text: "Login",
+                    color: textColor,
+                    onPressed: () {
+                      // You can add validation or any state management logic here
+                      Get.toNamed('HomePage');
+                    },
+                    fontSize: 17,
+                  ),
                   SizedBox(height: 15),
-                  Center(child: MyText(text: "or login with", color: textColor, fontsize: 15, fontWeight: FontWeight.normal,)),
-                  SizedBox(height: 35,),
+                  Center(
+                    child: MyText(
+                      text: "or login with",
+                      color: textColor,
+                      fontsize: 15,
+                      fontWeight: FontWeight.normal,
+                    ),
+                  ),
+                  SizedBox(height: 35),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Image.asset("assets/google.png", width: 35, height: 35,),
-                      SizedBox(width: 40,),
-                      Icon(Icons.apple, size: 47,),
-                      SizedBox(width: 40, ),
-                      Icon(Icons.facebook, color: facebookColor, size: 45,),
-
+                      Image.asset("assets/google.png", width: 35, height: 35),
+                      SizedBox(width: 40),
+                      Icon(Icons.apple, size: 47),
+                      SizedBox(width: 40),
+                      Icon(Icons.facebook, color: facebookColor, size: 45),
                     ],
                   ),
-                  SizedBox(height: 35,),
+                  SizedBox(height: 35),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      MyText(text: "Don't have account? ", color: textColor, fontsize: 16, fontWeight: FontWeight.bold),
-                      MyTextButton(text: "Sign in here", onPressed: (){}, textColor: textColor, fontSize: 16, fontWeight: FontWeight.bold)
+                      MyText(
+                        text: "Don't have account? ",
+                        color: textColor,
+                        fontsize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      MyTextButton(
+                        text: "Sign in here",
+                        onPressed: () {},
+                        textColor: textColor,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ],
-                  )
+                  ),
                 ],
               ),
             ),
@@ -58,4 +103,3 @@ class Login extends StatelessWidget {
     );
   }
 }
-

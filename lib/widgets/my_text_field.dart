@@ -3,15 +3,18 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:homey/widgets/my_color.dart';
 
+
 class MyTextField extends StatelessWidget {
   final String hintText;
   final bool isObsecure;
   final double fontsize;
+  final TextEditingController? controller;
 
   const MyTextField({super.key,
     required this.hintText,
     required this.isObsecure,
-    required this.fontsize});
+    required this.fontsize,
+    this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +26,7 @@ class MyTextField extends StatelessWidget {
         borderRadius: BorderRadius.circular((8)),
       ),
       child: TextField(
+        controller: controller,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: GoogleFonts.poppins(
