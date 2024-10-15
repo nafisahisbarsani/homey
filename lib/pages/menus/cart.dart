@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:homey/widgets/my_color.dart';
 import 'package:homey/widgets/my_text.dart';
@@ -10,7 +9,6 @@ import '../../cart_controller.dart';
 
 class Cart extends StatelessWidget {
   final CartController cartController = Get.put(CartController());
-
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +31,6 @@ class Cart extends StatelessWidget {
         ),
         elevation: 0,
       ),
-
       body: Obx(() {
         if (cartController.carts.isEmpty) {
           return Center(child: Text('Your cart is empty.'));
@@ -65,16 +62,18 @@ class Cart extends StatelessWidget {
                 ],
               ),
               leading: Image.asset(item.image),
-              trailing: IconButton(
-                icon: Icon(
-                  Icons.restore_from_trash_sharp,
-                  color: Colors.redAccent.shade200,
-                ),
-                onPressed: () {
+              trailing: GestureDetector(
+                onTap: () {
                   cartController.deleteCart(item.id!);
                 },
+                child: Image.asset(
+                  'assets/trashbin.png',
+                  width: 23,
+                  height: 23,
+                ),
               ),
             );
+      
           },
         );
       }),

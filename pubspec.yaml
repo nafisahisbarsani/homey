@@ -90,6 +90,7 @@ flutter:
       - assets/sabun.png
       - assets/logo2.png
       - assets/black-chair.png
+      - assets/trashbin.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

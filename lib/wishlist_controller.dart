@@ -35,20 +35,20 @@ class WishlistController extends GetxController{
       },
     );
   }
-
+// insert wishlist
   Future<int> addWishlist(WishlistModel wishlist) async {
     var dbClient = await db;
     int result = await dbClient!.insert('wishlists', wishlist.toMap());
     loadWishlist();
     return result;
   }
-
+//mengambil data
   Future<void> loadWishlist() async {
     var dbClient = await db;
     List<Map<String, dynamic>> queryResult = await dbClient!.query('wishlists');
     wishlists.assignAll(queryResult.map((data) => WishlistModel.fromMap(data)).toList());
   }
-
+//update data
   Future<int> updateWishlist(WishlistModel wishlist) async {
     var dbClient = await db;
     int result = await dbClient!.update(
@@ -61,7 +61,7 @@ class WishlistController extends GetxController{
     return result;
   }
 
-  // Delete Task
+  // Delete data
   Future<void> deleteWishlist(int id) async {
     var dbClient = await db;
     await dbClient!.delete('wishlists', where: 'id = ?', whereArgs: [id]);

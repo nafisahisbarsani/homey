@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: '/splash', //
+      initialRoute: '/splash',
       getPages: [
         GetPage(name: '/splash', page: () => Splashscreen()),
         GetPage(name: '/', page: () => Login()),

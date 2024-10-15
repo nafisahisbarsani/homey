@@ -35,6 +35,8 @@ class CartController extends GetxController{
       },
     );
   }
+
+  //memasukan data
   Future<int> addCart(CartModel cart) async {
     var dbClient = await db;
     int result = await dbClient!.insert('carts', cart.toMap());
@@ -42,13 +44,13 @@ class CartController extends GetxController{
     return result;
   }
 
-
+//mengambil data
   Future<void> loadCart() async {
     var dbClient = await db;
     List<Map<String, dynamic>> queryResult = await dbClient!.query('carts');
     carts.assignAll(queryResult.map((data) => CartModel.fromMap(data)).toList());
   }
-
+//update data
   Future<int> updateWishlist(CartModel cart) async {
     var dbClient = await db;
     int result = await dbClient!.update(
@@ -61,7 +63,7 @@ class CartController extends GetxController{
     return result;
   }
 
-  // Delete Task
+  // Delete cart
   Future<void> deleteCart(int id) async {
     var dbClient = await db;
     await dbClient!.delete('carts', where: 'id = ?', whereArgs: [id]);
