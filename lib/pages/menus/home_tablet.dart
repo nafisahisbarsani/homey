@@ -1,20 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:homey/cart_controller.dart';
-import 'package:homey/models/cart_model.dart';
-import 'package:homey/widgets/my_cart_item.dart';
-import 'package:homey/widgets/my_color.dart';
-import 'package:homey/widgets/my_text.dart';
-import 'package:homey/widgets/my_text_field.dart';
-import '../../controller/username_controller.dart';
-import '../../models/wishlist_model.dart';
-import '../../widgets/my_text_button.dart';
-import '../../wishlist_controller.dart';
+import 'package:get/get_core/src/get_main.dart';
 
-class Home extends StatelessWidget {
-  final UserController usercontroller = Get.put(UserController());
-   Home({super.key});
+import '../../cart_controller.dart';
+import '../../models/cart_model.dart';
+import '../../models/wishlist_model.dart';
+import '../../widgets/my_cart_item.dart';
+import '../../widgets/my_color.dart';
+import '../../widgets/my_text.dart';
+import '../../widgets/my_text_button.dart';
+import '../../widgets/my_text_field.dart';
+import '../../wishlist_controller.dart';
+class Hometablet extends StatelessWidget {
+  const Hometablet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +39,12 @@ class Home extends StatelessWidget {
                   fontsize: 12,
                   fontWeight: FontWeight.normal,
                 ),
-
+                MyText(
+                  text: "Nafisah Isbarsani",
+                  color: textColor,
+                  fontsize: 12,
+                  fontWeight: FontWeight.normal,
+                ),
               ],
             )
           ],
@@ -68,38 +72,40 @@ class Home extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 9),
-              Image.asset("assets/special.png"),
+              Center(
+                child: Image.asset("assets/special.png"),
+              ),
               SizedBox(height: 30),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(
                     child:
-                        Image.asset("assets/sofa.png", width: 53, height: 53),
+                    Image.asset("assets/sofa.png", width: 53, height: 53),
                   ),
                   SizedBox(width: 20),
                   Expanded(
                     child:
-                        Image.asset("assets/lemari.png", width: 53, height: 53),
+                    Image.asset("assets/lemari.png", width: 53, height: 53),
                   ),
                   SizedBox(width: 20),
                   Expanded(
                     child:
-                        Image.asset("assets/lampu.png", width: 53, height: 53),
+                    Image.asset("assets/lampu.png", width: 53, height: 53),
                   ),
                   SizedBox(width: 20),
                   Expanded(
                     child:
-                        Image.asset("assets/kursi.png", width: 53, height: 53),
+                    Image.asset("assets/kursi.png", width: 53, height: 53),
                   ),
                   SizedBox(width: 20),
                   Expanded(
                     child:
-                        Image.asset("assets/hanger.png", width: 53, height: 53),
+                    Image.asset("assets/hanger.png", width: 53, height: 53),
                   ),
                 ],
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
               MyText(
                 text: "Most Popular",
                 color: textColor,
@@ -108,7 +114,7 @@ class Home extends StatelessWidget {
               ),
               SizedBox(height: 30),
               GridView.count(
-                crossAxisCount: 2,
+                crossAxisCount: 3,
                 childAspectRatio: 0.6,
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
@@ -122,7 +128,7 @@ class Home extends StatelessWidget {
                   ),
                   buildCartItem(
                     imagePath: "assets/lounge-chair.png",
-                    itemName: "Outdoor Lounge     Chairs",
+                    itemName: "Outdoor Lounge Chairs",
                     price: "Rp. 599.000",
                     wishlistController: wishlistController,
                     cartController: cartController,
@@ -178,6 +184,7 @@ class Home extends StatelessWidget {
     );
   }
 
+
   Widget buildCartItem({
     required String imagePath,
     required String itemName,
@@ -186,29 +193,37 @@ class Home extends StatelessWidget {
     required CartController cartController,
   }) {
     return Container(
-      width: 140,
-      height: 230,
-      padding: EdgeInsets.all(8),
-      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+      padding: EdgeInsets.all(4),
+      margin: EdgeInsets.symmetric(vertical: 12, horizontal: 8),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.grey.shade300),
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(8),
+        // Kurangi sedikit untuk borderRadius
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
-            spreadRadius: 3,
-            blurRadius: 5,
-            offset: Offset(0, 3),
+            color: Colors.grey.withOpacity(0.05),
+            // Kurangi shadow untuk membuatnya lebih halus
+            spreadRadius: 1,
+            blurRadius: 2,
+            offset: Offset(0, 1),
           ),
         ],
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Flexible(
-            child: Image.asset(imagePath),
+          AspectRatio(
+            aspectRatio: 1,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
+              ),
+            ),
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 6), // Sedikit jarak antara gambar dan teks item
           MyCartItem(
             text: itemName,
             color: textColor,
@@ -217,7 +232,7 @@ class Home extends StatelessWidget {
             onPressed: () {},
             fontWeight: FontWeight.normal,
           ),
-          SizedBox(height: 5),
+          SizedBox(height: 6), // Sedikit jarak antara teks dan tombol
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

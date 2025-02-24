@@ -7,22 +7,17 @@ import 'package:homey/widgets/my_text.dart';
 import 'package:homey/widgets/my_text_button.dart';
 import 'package:homey/widgets/my_text_field.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+import '../../controller/login_controller.dart';
 
-  @override
-  _LoginState createState() => _LoginState();
-}
-
-class _LoginState extends State<Login> {
-  // You can add any state variables here if needed
+class Login extends StatelessWidget {
+  final LoginController loginController = Get.find<LoginController>();
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
+   Login({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+   return Scaffold(
       body: Center(
         child: SingleChildScrollView(
           child: Center(
@@ -32,30 +27,43 @@ class _LoginState extends State<Login> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Image.asset("assets/logo3.png", width: 100, height: 100),
-                  SizedBox(height: 40),
+                  const SizedBox(height: 40),
                   MyTextField(
-                    hintText: "username",
+                    hintText: "Username",
                     isObsecure: false,
                     fontsize: 16,
                     controller: usernameController,
                   ),
                   MyTextField(
-                    hintText: "password",
+                    hintText: "Password",
                     isObsecure: true,
                     fontsize: 16,
                     controller: passwordController,
                   ),
-                  SizedBox(height: 20),
-                  MyButton(
-                    text: "Login",
-                    color: textColor,
-                    onPressed: () {
-                      // You can add validation or any state management logic here
-                      Get.toNamed('HomePage');
-                    },
-                    fontSize: 17,
-                  ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 20),
+                  Obx(() {
+                    return loginController.isLoading.value
+                        ? Center(
+                      child: CircularProgressIndicator(
+                        strokeWidth: 3,
+                        color: textColor,
+                      ),
+                    )
+                        : MyButton(
+                      text: 'Login',
+                      color: textColor,
+                      onPressed: () {
+                        final username = usernameController.text.trim();
+                        final password = passwordController.text.trim();
+                        if (username.isEmpty || password.isEmpty) {
+                          Get.snackbar('Error', 'All fields are required');
+                          return;
+                        }
+                        loginController.login(username, password);
+                      },
+                      fontSize: 14, fontWeight: FontWeight.bold,);
+                  }),
+                  const SizedBox(height: 15),
                   Center(
                     child: MyText(
                       text: "or login with",
@@ -64,18 +72,18 @@ class _LoginState extends State<Login> {
                       fontWeight: FontWeight.normal,
                     ),
                   ),
-                  SizedBox(height: 35),
+                  const SizedBox(height: 35),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset("assets/google.png", width: 35, height: 35),
-                      SizedBox(width: 40),
-                      Icon(Icons.apple, size: 47),
-                      SizedBox(width: 40),
+                      const SizedBox(width: 40),
+                      const Icon(Icons.apple, size: 47),
+                      const SizedBox(width: 40),
                       Icon(Icons.facebook, color: facebookColor, size: 45),
                     ],
                   ),
-                  SizedBox(height: 35),
+                  const SizedBox(height: 35),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -87,7 +95,9 @@ class _LoginState extends State<Login> {
                       ),
                       MyTextButton(
                         text: "Sign in here",
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.toNamed('/register');
+                        },
                         textColor: textColor,
                         fontSize: 16,
                         fontWeight: FontWeight.bold,

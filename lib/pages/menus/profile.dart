@@ -1,10 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:homey/pages/account.dart';
 import 'package:homey/widgets/my_color.dart';
 import 'package:homey/widgets/my_text.dart';
 
+import '../../controller/username_controller.dart';
+
 class Profile extends StatelessWidget {
-  const Profile({super.key});
+  final UserController userController = Get.find<UserController>();
+
+  Profile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,38 +37,32 @@ class Profile extends StatelessWidget {
           ],
         ),
       ),
-        body: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 25, horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-              Expanded(child:
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Image.asset("assets/profile.png",),
-                  SizedBox(height: 12,),
-                  MyText(text: "Nafisah Isbarsani", color: textColor, fontsize: 16, fontWeight: FontWeight.bold),
-                  MyText(text: "nafisahisbarsani12@gmail.com", color: textColor, fontsize: 16, fontWeight: FontWeight.normal),
-                  SizedBox(height: 40),
-
-                  _buildMenuItem(Icons.location_on, "My Address"),
-                  SizedBox(height: 20),
-                  _buildMenuItem(Icons.notifications, "Notification"),
-                  SizedBox(height: 20),
-                  _buildMenuItem(Icons.devices, "Devices"),
-                  SizedBox(height: 20),
-                  _buildMenuItem(Icons.lock_outline, "Password"),
-                  SizedBox(height: 20),
-                  _buildMenuItem(Icons.language, "Language"),
-              ]
-              )
-              )
-                ],
-              ),
+              Obx(() => MyText(
+                text: userController.username.value.isEmpty
+                    ? "Guest"
+                    : userController.username.value,
+                color: textColor,
+                fontsize: 12,
+                fontWeight: FontWeight.bold,
+              )),
+              SizedBox(height: 40),
+              _buildMenuItem(Icons.location_on, "My Address", () {}),
+              SizedBox(height: 20),
+              _buildMenuItem(Icons.notifications, "Notification", () {}),
+              SizedBox(height: 20),
+              _buildMenuItem(Icons.devices, "Devices", () {}),
+              SizedBox(height: 20),
+              _buildMenuItem(Icons.account_circle, "Account", () {
+                Get.to(() => Account());
+              }),
+              SizedBox(height: 20),
+              _buildMenuItem(Icons.language, "Language", () {}),
             ],
           ),
         ),
@@ -71,23 +70,27 @@ class Profile extends StatelessWidget {
     );
   }
 }
-Widget _buildMenuItem(IconData icon, String title) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 12.0),
-    child: Row(
-      children: [
-        Icon(icon, color: textColor),
-        SizedBox(width: 16),
-        Expanded(
-          child: MyText(
-            text: title,
-            color: textColor,
-            fontsize: 16,
-            fontWeight: FontWeight.normal,
+
+Widget _buildMenuItem(IconData icon, String title, VoidCallback onTap) {
+  return GestureDetector(
+    onTap: onTap,
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 12.0),
+      child: Row(
+        children: [
+          Icon(icon, color: textColor),
+          SizedBox(width: 16),
+          Expanded(
+            child: MyText(
+              text: title,
+              color: textColor,
+              fontsize: 16,
+              fontWeight: FontWeight.normal,
+            ),
           ),
-        ),
-        Icon(Icons.chevron_right, color: textColor),
-      ],
+          Icon(Icons.chevron_right, color: textColor),
+        ],
+      ),
     ),
   );
 }

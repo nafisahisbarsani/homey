@@ -8,12 +8,15 @@ class MyButton extends StatelessWidget {
   final Color color;
   final VoidCallback onPressed;
   final double fontSize;
+  final FontWeight fontWeight;
 
-  const MyButton({super.key,
-    required this.text,
-    required this.color,
-    required this.onPressed,
-    required this.fontSize});
+  const MyButton(
+      {super.key,
+      required this.text,
+      required this.color,
+      required this.onPressed,
+      required this.fontSize,
+      required this.fontWeight});
 
   @override
   Widget build(BuildContext context) {
@@ -23,20 +26,15 @@ class MyButton extends StatelessWidget {
       child: ElevatedButton(
           onPressed: onPressed,
           style: ElevatedButton.styleFrom(
-            backgroundColor: textColor,
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8)
-            )
-          ),
+              backgroundColor: textColor,
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8))),
           child: Text(
             text,
             style: GoogleFonts.poppins(
-              color: firstColor,
-              fontSize: fontSize
-            ),
-          )
-      ),
+                color: firstColor, fontSize: fontSize, fontWeight: fontWeight),
+          )),
     );
   }
 }

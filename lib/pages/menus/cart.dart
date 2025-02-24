@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:homey/widgets/my_button.dart';
 import 'package:homey/widgets/my_color.dart';
 import 'package:homey/widgets/my_text.dart';
 
@@ -25,58 +26,80 @@ class Cart extends StatelessWidget {
               width: 27,
               height: 27,
             ),
-            SizedBox(width: 15,),
-            MyText(text: "My Cart", color: textColor, fontsize: 25, fontWeight: FontWeight.normal,)
+            SizedBox(
+              width: 15,
+            ),
+            MyText(
+              text: "My Cart",
+              color: textColor,
+              fontsize: 25,
+              fontWeight: FontWeight.normal,
+            )
           ],
         ),
         elevation: 0,
       ),
-      body: Obx(() {
-        if (cartController.carts.isEmpty) {
-          return Center(child: Text('Your cart is empty.'));
-        }
-        return ListView.builder(
-          itemCount: cartController.carts.length,
-          itemBuilder: (context, index) {
-            final item = cartController.carts[index];
-            return ListTile(
-              title: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Brand Name
-                  Text(
-                    item.brand,
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.normal,
-                      color: textColor,
+      body: Column(
+        children: [
+          Expanded(
+            child: Obx(() {
+              if (cartController.carts.isEmpty) {
+                return Center(child: Text('Your cart is empty.'));
+              }
+              return ListView.builder(
+                itemCount: cartController.carts.length,
+                itemBuilder: (context, index) {
+                  final item = cartController.carts[index];
+                  return ListTile(
+                    title: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Brand Name
+                        Text(
+                          item.brand,
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.normal,
+                            color: textColor,
+                          ),
+                        ),
+                        // Price
+                        Text(
+                          item.price,
+                          style: GoogleFonts.poppins(
+                            fontWeight: FontWeight.normal,
+                            color: textColor,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                  // Price
-                  Text(
-                    item.price,
-                    style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.normal,
-                      color: textColor,
+                    leading: Image.asset(item.image),
+                    trailing: IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                        color: Colors.redAccent.shade200,
+                      ),
+                      onPressed: () {
+                        cartController.deleteCart(item.id!);
+                      },
                     ),
-                  ),
-                ],
-              ),
-              leading: Image.asset(item.image),
-              trailing: GestureDetector(
-                onTap: () {
-                  cartController.deleteCart(item.id!);
+                  );
                 },
-                child: Image.asset(
-                  'assets/trashbin.png',
-                  width: 23,
-                  height: 23,
-                ),
-              ),
-            );
-      
-          },
-        );
-      }),
+              );
+            }),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: SizedBox(
+              child: MyButton(
+                  text: "Checkout",
+                  color: textColor,
+                  fontWeight: FontWeight.normal,
+                  onPressed: () {},
+                  fontSize: 16),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
